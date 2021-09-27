@@ -11,9 +11,14 @@ hook.Add("PlayerInitialSpawn", "Metadata.Load", function(ply)
 
 	local data = query("SELECT * FROM metadata WHERE info = "..str(info))
 
+	if (!data) then goto ended end
+
 	for _, v in pairs(data) do
 		ply:SetNWString("metadata_"..v.key, v.value)
 	end
+
+	::ended::
+	hook.Call("MetadataLoaded", nil, ply)
 end)
 
 function PLAYER:SetMetadata(key, value)
