@@ -33,7 +33,7 @@ function PLAYER:SetMetadata(key, value)
 
     local data = query("SELECT * FROM metadata WHERE info = "..str(info).." AND key = "..str(key))
     if (data) then
-        query("UPDATE metadata SET type = "..str(type)..", value = "..str(value).." WHERE info = "..str(info))
+        query("UPDATE metadata SET type = "..str(type)..", value = "..str(value).." WHERE info = "..str(info).." AND key = "..str(key))
     else
         query("INSERT INTO metadata(info, key, type, value) VALUES("..str(info)..", "..str(key)..", "..str(type)..", "..str(value)..")")
     end
@@ -77,7 +77,7 @@ function SetMetadata(ply, key, value)
 
     local data = query("SELECT * FROM metadata WHERE info = "..str(info).." AND key = "..str(key))
     if (data) then
-        query("UPDATE metadata SET type = "..str(type)..", value = "..str(value).." WHERE info = "..str(info))
+        query("UPDATE metadata SET type = "..str(type)..", value = "..str(value).." WHERE info = "..str(info).." AND key = "..str(key))
     else
         query("INSERT INTO metadata(info, key, type, value) VALUES("..str(info)..", "..str(key)..", "..str(type)..", "..str(value)..")")
     end
